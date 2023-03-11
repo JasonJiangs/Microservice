@@ -1,0 +1,26 @@
+# command-line-arguments
+.\qqq.go:23:14: *p escapes to heap:
+.\qqq.go:23:14:   flow: {storage for ... argument} = &{storage for *p}:
+.\qqq.go:23:14:     from *p (spill) at .\qqq.go:23:14
+.\qqq.go:23:14:     from ... argument (slice-literal-element) at .\qqq.go:23:13
+.\qqq.go:23:14:   flow: {heap} = {storage for ... argument}:
+.\qqq.go:23:14:     from ... argument (spill) at .\qqq.go:23:13
+.\qqq.go:23:14:     from fmt.Println(... argument...) (call parameter) at .\qqq.go:23:13
+.\qqq.go:25:2: city escapes to heap:
+.\qqq.go:25:2:   flow: ptr = &city:
+.\qqq.go:25:2:     from &city (address-of) at .\qqq.go:26:9
+.\qqq.go:25:2:     from ptr := &city (assign) at .\qqq.go:26:6
+.\qqq.go:25:2:   flow: ~r0 = ptr:
+.\qqq.go:25:2:     from return ptr (return) at .\qqq.go:27:2
+.\qqq.go:25:2: moved to heap: city
+.\qqq.go:23:13: ... argument does not escape
+.\qqq.go:23:14: *p escapes to heap
+.\qqq.go:17:14: *p1 escapes to heap:
+.\qqq.go:17:14:   flow: {storage for ... argument} = &{storage for *p1}:
+.\qqq.go:17:14:     from *p1 (spill) at .\qqq.go:17:14
+.\qqq.go:17:14:     from ... argument (slice-literal-element) at .\qqq.go:17:13
+.\qqq.go:17:14:   flow: {heap} = {storage for ... argument}:
+.\qqq.go:17:14:     from ... argument (spill) at .\qqq.go:17:13
+.\qqq.go:17:14:     from fmt.Println(... argument...) (call parameter) at .\qqq.go:17:13
+.\qqq.go:17:13: ... argument does not escape
+.\qqq.go:17:14: *p1 escapes to heap
