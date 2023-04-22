@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net"
-	"net/rpc"
+	"net/rpc/jsonrpc"
 )
 
 // define a struct
@@ -14,15 +14,18 @@ type Server struct {
 func (s *Server) HelloServer(name string, response *string) error {
 	*response = "hello:" + name
 	return nil
+	//return errors.New("Unknown error")
 }
 
 func main() {
 	// register rpc server, the first parameter is the name of the service, the second parameter is the service instance
-	err := rpc.RegisterName("server01", new(Server))
-	if err != nil {
-		fmt.Println("RegisterName error:", err)
-		return
-	}
+	//err := rpc.RegisterName("server01", new(Server))
+	//if err != nil {
+	//	fmt.Println("RegisterName error:", err)
+	//	return
+	//}
+
+	registerHelloService(new(Server))
 
 	// set listen address
 	listen, err := net.Listen("tcp", "127.0.0.1:8800")
@@ -43,6 +46,7 @@ func main() {
 	fmt.Println("Accept a connection from", conn.RemoteAddr().String())
 
 	// bind the connection to rpc
-	rpc.ServeConn(conn)
+	//rpc.ServeConn(conn)
+	jsonrpc.ServeConn(conn)
 
 }

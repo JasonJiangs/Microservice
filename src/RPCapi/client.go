@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	"net/rpc"
+	"net/rpc/jsonrpc"
 )
 
-func main() {
+func main01() {
 	// dial to connect to the server
-	conn, err := rpc.Dial("tcp", "127.0.0.1:8800")
+	//conn, err := rpc.Dial("tcp", "127.0.0.1:8800")
+	conn, err := jsonrpc.Dial("tcp", "127.0.0.1:8800")
 	if err != nil {
 		fmt.Println("Dial error:", err)
 		return
@@ -23,5 +24,17 @@ func main() {
 		return
 	}
 
+	fmt.Println("Response:", response)
+}
+
+// Compare this snippet from src\RPCapi\client.go:
+func main() {
+	client := InitClient("127.0.0.0:8800")
+	var response string
+	err := client.HelloServer("client01", &response)
+	if err != nil {
+		fmt.Println("Call error:", err)
+		return
+	}
 	fmt.Println("Response:", response)
 }
