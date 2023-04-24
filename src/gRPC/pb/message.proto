@@ -1,0 +1,38 @@
+syntax="proto3";
+
+package pb;
+
+option go_package = "./;pb";
+
+enum Week {
+  Monday = 0;
+  Tuesday = 1;
+  Wednesday = 2;
+  Thursday = 3;
+  Friday = 4;
+  Saturday = 5;
+  Sunday = 6;
+}
+
+message Student {
+  string name = 1;
+  int32 age = 2;
+  string address = 3;
+  Week day = 4;
+  People p = 5;
+  repeated int32 score = 6;
+  oneof data {
+    string email = 7;
+  }
+}
+
+message People {
+  string name = 1;
+  int32 age = 2;
+}
+
+// add service
+// service wil not be compiled when using protoc, instead, can use grpc.
+service ajax {
+  rpc SayHello (People) returns (Student);
+}

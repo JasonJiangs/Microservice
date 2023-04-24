@@ -16,14 +16,30 @@ There are several technologies used:
 10. [FastDFS](https://github.com/happyfish100/fastdfs)
 11. [Nginx](https://www.nginx.com/)
 
-### Practice 1: Chatting Room
-##### Path: src/Chatting Room
+## Practice 1: Chatting Room
+### Path: src/Chatting Room
 This project implements a chatting room mainly using channel and net library to 
 realize the communication between multiple clients and server.
 
-### Practice 2: RPCapi
-##### Path: src/RPCapi
+## Practice 2: RPCapi
+### Path: src/RPCapi
+RPC is a remote procedure call protocol. It is a communication protocol between two computers on a network.
 The project implements a simple RPC server and client, and simply encapsulates the function of
 server and client.
 
+## Practice 3: gRPC
+### Path: src/gRPC
+Want to use protobuf, we need to use gRPC as a whole package.
+
+Compile protobuf file:
+```Bash
+go install github.com/golang/protobuf/protoc-gen-go@latest
+protoc --go_out=./ *.proto
+# grpc compile instead of protoc
+protoc --go_out=plugins=grpc:./ *.proto
+```
+Install gRPC:
+```Bash
+go get -u google.golang.org/grpc
+```
 
